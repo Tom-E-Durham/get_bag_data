@@ -30,7 +30,7 @@ class GetImage:
                         
                         # Save the Image
                         output_folder_path = os.path.join(args.output_path, 'raw_images')
-                        print(output_folder_path)
+                        
                         if not os.path.exists(output_folder_path):
                             os.makedirs(output_folder_path)
                             print(f"'{output_folder_path}' has been created!")
