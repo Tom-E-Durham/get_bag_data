@@ -42,7 +42,11 @@ class GetGPS:
         # Close the bag file
         bag.close()
 
-        output_json_file = os.path.join(args.output_path, 'gps_data.json')
+        output_folder_path = os.path.join(args.output_path, 'gps_output')
+        if not os.path.exists(output_folder_path):
+            os.makedirs(output_folder_path)
+            print(f"'{output_folder_path}' has been created!" )
+        output_json_file = os.path.join(output_folder_path, 'gps_data.json')
         # Write GPS data to JSON file
         with open(output_json_file, 'w') as json_file:
             json.dump(gps_data_list, json_file, indent=4)

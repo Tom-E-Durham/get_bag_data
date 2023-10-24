@@ -15,6 +15,7 @@ class GetImage:
     def __init__(self, args):
         self.bridge = CvBridge()
         path = args.input_path
+
         with rosbag.Bag(path, 'r') as bag:
             for topic, msg, t in bag.read_messages():
                 if topic == args.topic_of_image:
@@ -28,10 +29,13 @@ class GetImage:
                         image_name = formatted_timestamp + '.png'
                         
                         # Save the Image
-                        if not os.path.exists(args.output_path):
-                            os.makedirs(args.output_path)
-                            print(f"'{args.output_path}' has been created!")
-                        cv2.imwrite(args.output_path + image_name, cv_image)
+                        output_folder_path = os.path.join(args.output_path, 'raw_images')
+                        print(output_folder_path)
+                        if not os.path.exists(output_folder_path):
+                            os.makedirs(output_folder_path)
+                            print(f"'{output_folder_path}' has been created!")
+                        image_path = os.path.join(output_folder_path, image_name)
+                        cv2.imwrite(image_path, cv_image)
 
                     except CvBridgeError as e:
                         print("Error converting ROS Image to OpenCV Image:", e)
@@ -44,12 +48,12 @@ parser = argparse.ArgumentParser(
 parser.add_argument(
     "-pi","--input_path",
     help="Path to the input bag file",
-    default='/home/tom/ROS_twizy/bagdata/2023-9-13/',
+    default='./bag_data',
     type=str)
 parser.add_argument(
     "-po","--output_path",
     help="Path to the output folder",
-    default='/home/tom/ROS_twizy/bagdata/2023-9-13/output/img_output',
+    default='./data',
     type=str)
 parser.add_argument(
     "-t","--topic_of_image",
