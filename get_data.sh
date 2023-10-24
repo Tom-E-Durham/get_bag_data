@@ -24,4 +24,5 @@ python3 get_image.py -pi "$input_path" -po "$output_path" -t /theta_s_uvc/image_
 # Format: rosrun pcl_ros bag_to_pcd <input_file.bag> <topic> <output_directory>
 rosrun pcl_ros bag_to_pcd /home/tom/ROS_twizy/bagdata/2023-9-13/synchronized_data.bag /synchronized_lidar_topic /home/tom/ROS_twizy/bagdata/2023-9-13/output/pcd_output
 
-# 
+# For gps
+python3 get_gps.py -pi "$input_path" -po "$output_path" -t /gps/fix

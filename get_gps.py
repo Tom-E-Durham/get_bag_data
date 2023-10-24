@@ -41,11 +41,13 @@ class GetGPS:
                     gps_data_list.append(gps_data)
         # Close the bag file
         bag.close()
+
+        output_json_file = os.path.join(args.output_path, 'gps_data.json')
         # Write GPS data to JSON file
-        with open(args.output_json_file, 'w') as json_file:
+        with open(output_json_file, 'w') as json_file:
             json.dump(gps_data_list, json_file, indent=4)
 
-        print(f"GPS data has been extracted from '{path}' and saved to '{args.output_json_file}'.")
+        print(f"GPS data has been extracted from '{path}' and saved to '{output_json_file}'.")
 
 # deal with optional arguments
 
@@ -54,12 +56,12 @@ parser = argparse.ArgumentParser(
 parser.add_argument(
     "-pi","--input_path",
     help="Path to the input bag file",
-    default='/media/tom/SSD1/Simple_BEV/bag_data/durhamCamp_2023-10-03-13-42-34_0.bag',
+    default='./bag_data',
     type=str)
 parser.add_argument(
-    "-po","--output_json_file",
+    "-po","--output_path",
     help="Path to the output file",
-    default='output_gps_data.json',
+    default='./',
     type=str)
 parser.add_argument(
     "-t","--topic_of_GPS",
