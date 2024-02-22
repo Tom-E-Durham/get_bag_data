@@ -26,3 +26,6 @@ rosrun pcl_ros bag_to_pcd $input_path /os_cloud_node/points $output_path/pcd_out
 
 # For gps
 python3 get_gps.py -pi "$input_path" -po "$output_path" -t /gps/fix
+
+# For imu
+#python3 get_imu.py -pi "$input_path" -po "$output_path" -t /imu/data

@@ -22,7 +22,6 @@ class GetGPS:
                     # Access the NavSatFix message
                     navsatfix_message = msg
                     timestamp = navsatfix_message.header.stamp
-                    timestamp = navsatfix_message.header.stamp
                     timestamp_str = str(timestamp)
                     formatted_timestamp = timestamp_str[:-9] + '.' + timestamp_str[-9:]
                     # Extract relevant information from the NavSatFix message
